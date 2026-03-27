@@ -1,0 +1,5 @@
+a,b,c,d=('cherry','bananna','apple',4)
+print(a)
+print(b)
+print(c)
+print(d)
