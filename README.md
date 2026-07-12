@@ -1,5 +1,6 @@
 #  About Me:
-Aspiring AI engineer
+
+Aspiring AI Engineer passionate about Python Full Stack Development and Generative AI technologies. Currently pursuing professional training in Python Full Stack Development with Gen AI while building strong skills in web development, problem-solving, and software design. Experienced in coordination, documentation, and healthcare operations, with strong communication, teamwork, and adaptability skills. Eager to contribute to innovative projects and grow in a dynamic tech enviroment.
 
 
 ## 🌐 Socials:
