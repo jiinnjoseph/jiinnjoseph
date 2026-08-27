@@ -1,4 +1,4 @@
-<img alt="jiinnjoseph's GitHub profile" src="dark_mode.svg" width="100%" />
+
 
 #  About Me:
 
