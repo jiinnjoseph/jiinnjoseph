@@ -9,17 +9,12 @@ import xml.sax.saxutils as saxutils
 from PIL import Image
 import re
 
-# Personal access token support (with REST fallback)
 TOKEN = os.environ.get('ACCESS_TOKEN') or os.environ.get('GITHUB_TOKEN')
 HEADERS = {'authorization': 'token ' + TOKEN} if TOKEN else {}
 USER_NAME = os.environ.get('USER_NAME', 'Heyjithin')
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 
 def daily_readme(birthday):
-    """
-    Returns the length of time since I was born
-    e.g. 'XX years, XX months, XX days'
-    """
     diff = relativedelta.relativedelta(datetime.datetime.today(), birthday)
     return '{} {}, {} {}, {} {}{}'.format(
         diff.years, 'year' + format_plural(diff.years), 
@@ -120,7 +115,6 @@ def stars_counter(data):
     return total_stars
 
 def commit_counter():
-    # Attempt to fetch commit count from API or return known minimum baseline
     try:
         r = requests.get(f'https://api.github.com/search/commits?q=author:{USER_NAME}', headers=HEADERS)
         if r.status_code == 200:
@@ -236,7 +230,6 @@ if __name__ == '__main__':
     OWNER_ID, acc_date = user_data
     formatter('account data', user_time)
     
-    # Calculate uptime/age from account creation or fixed date
     created_dt = datetime.datetime.strptime(acc_date[:10], '%Y-%m-%d')
     age_data, age_time = perf_counter(daily_readme, created_dt)
     formatter('uptime calculation', age_time)
@@ -246,10 +239,8 @@ if __name__ == '__main__':
     repo_data, repo_time = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     follower_data, follower_time = perf_counter(follower_getter, USER_NAME)
 
-    # First ensure avatar ASCII art is applied
     update_avatar_ascii()
 
-    # Update stats elements in SVGs if element IDs exist
     svg_overwrite('dark_mode.svg', age_data, commit_data, star_data, repo_data, follower_data)
     svg_overwrite('light_mode.svg', age_data, commit_data, star_data, repo_data, follower_data)
 
